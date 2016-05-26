@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PG.Console
+namespace PG.Pages
 {
-    class App
+    public class Body
     {
-        static void Main(string[] args)
-        {
-           
-            
-        }
+        public string Image { get; set; }
     }
 }

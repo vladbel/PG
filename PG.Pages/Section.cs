@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PG.Console
+namespace PG.Pages
 {
-    class App
+    public class Section
     {
-        static void Main(string[] args)
-        {
-           
-            
-        }
+        public IEnumerable<Body> Bodies { get; set; }
     }
 }
