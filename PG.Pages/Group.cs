@@ -16,10 +16,19 @@ namespace PG.Pages
             return bodies;
         }
 
-        public static void UpdateBodyImages (IEnumerable<Group> groups)
+        public static async Task UpdateBodyImages (IEnumerable<Group> groups, Func<string, /* returns */Task<string>> processImage)
         {
-
+            var bodies = Group.GetBodies(groups);
+            var tasks = bodies.Select(
+                async b =>
+                {
+                    b.Image = await processImage(b.Image);
+                    return b;
+                }
+            );
+            var updatedBodies = await Task.WhenAll(tasks);
         }
+
     }
 
 
