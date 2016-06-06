@@ -25,5 +25,17 @@ namespace PG.Sort.Test
             _sort(array);
             Assert.IsTrue(array[0] == 1);
         }
+
+        [TestMethod]
+        public void SortArray_With_5_Element()
+        {
+            var array = new int[] { 1, 3, 5, 2, 4};
+            _sort(array);
+            
+            for ( var i = 0; i < array.Length; i++)
+            {
+                Assert.IsTrue(array[i] == i + 1);
+            }
+        }
     }
 }

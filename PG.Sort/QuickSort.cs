@@ -15,7 +15,7 @@ namespace PG.Sort
 
         private static void Sort (int[] array, int start, int end)
         {
-            if ( start == end )
+            if ( start >= end )
             {
                 // exit
                 return;
@@ -23,8 +23,31 @@ namespace PG.Sort
             else 
             {
                 var pivotPosition = start;
-                
+                for ( var i = start+1; i<= end; i++)
+                {
+                    if (array[i] < array[pivotPosition])
+                    {
+                        // move
+                        if ( i == pivotPosition + 1)
+                        {
+                            var buffer = array[i];
+                            array[i] = array[pivotPosition];
+                            array[pivotPosition] = buffer;
+                        }
+                        else
+                        {
+                            var buffer = array[i];
+                            array[i] = array[pivotPosition + 1];
+                            array[pivotPosition + 1] = array[pivotPosition];
+                            array[pivotPosition] = buffer;
+                        }
+                        pivotPosition++;
+                    }
+                }
+                Sort(array, start, pivotPosition);
+                Sort(array, pivotPosition + 1, end);
             }
+
         }
     }
 }
