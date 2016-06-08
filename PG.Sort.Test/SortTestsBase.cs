@@ -37,5 +37,25 @@ namespace PG.Sort.Test
                 Assert.IsTrue(array[i] == i + 1);
             }
         }
+
+        [TestMethod]
+        public void SortArray_With_0_Element()
+        {
+            var array = new int[] { };
+            _sort(array);
+
+            Assert.IsTrue(array.Length == 0);
+        }
+
+        [TestMethod]
+        public void SortArray_With_Duplicate_Element()
+        {
+            var array = new int[] { 1, 1, 1, 2, 2, 1, 1};
+            _sort(array);
+
+            Assert.AreEqual(1, array[0]);
+            Assert.IsTrue(array[6] == 2);
+
+        }
     }
 }
