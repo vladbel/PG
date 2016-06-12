@@ -55,5 +55,14 @@ namespace PG.LL.Tests
             Assert.IsTrue(result.Value == 1);
 
         }
+
+        [TestMethod]
+        public void Find_3_In_ListOf6()
+        {
+            var list = Node<int>.Build<int>(new int[] { 0, 1, 2, 3, 4, 5 });
+            var result = Node<int>.FindFromTail<int>(list, 3);
+            Assert.IsTrue(result.Value == 2);
+
+        }
     }
 }

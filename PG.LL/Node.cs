@@ -11,6 +11,18 @@ namespace PG.LL
         public T Value { get; set; }
         public Node<T> Next { get; set; }
 
+        public static Node<T> GetTail<T> (Node<T> head)
+        {
+            if (head.Next == null)
+            {
+                return head;
+            }
+            else
+            {
+                return GetTail(head.Next);
+            }
+        }
+
 
         #region "Find n-th element from the end"
         public static Node<T1> FindFromTail<T1>(Node<T1> head, int n)
@@ -50,7 +62,7 @@ namespace PG.LL
 
         #endregion
 
-        #region "BuildListFromArray"
+        #region "Build List From Array"
         
         public static Node<T1> Build<T1> (IEnumerable<T1> items)
         {
@@ -74,6 +86,32 @@ namespace PG.LL
 
             return head;
         }
+        #endregion
+
+        #region "Loop in list"
+
+        public static Node<T1> FindLoopStart<T1>(Node<T1> head)
+        {
+            Node<T1> p1, p2;
+            p1 = p2 = head;
+
+            do
+            {
+                p1 = p1.Next;
+                p2 = p2.Next.Next;
+            } while (p1 != p2);
+
+            p2 = head;
+
+            while (p1 != p2)
+            {
+                p1 = p1.Next;
+                p2 = p2.Next;
+            }
+
+            return p1;
+        }
+
         #endregion
     }
 }
