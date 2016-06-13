@@ -9,13 +9,13 @@ namespace PG.LL.Tests
         [TestMethod]
         public void Find_1st_In_ListOf3()
         {
-            var list = new Node<int>()
+            var list = new LinkedListNode<int>()
             {
                 Value = 0,
-                Next = new Node<int>()
+                Next = new LinkedListNode<int>()
                 {
                     Value = 1,
-                    Next = new Node<int>()
+                    Next = new LinkedListNode<int>()
                     {
                         Value = 2 ,
                         Next = null
@@ -23,7 +23,7 @@ namespace PG.LL.Tests
                 }
             };
 
-            var result = Node<int>.FindFromTail<int>(list, 1);
+            var result = LinkedListNode<int>.FindFromTail(list, 1);
 
             Assert.IsTrue(result.Value == 1);
         }
@@ -31,8 +31,8 @@ namespace PG.LL.Tests
         [TestMethod]
         public void Find_2nd_In_ListOf3()
         {
-            var list = Node<int>.Build<int>(new int[] {0, 1, 2 });
-            var result = Node<int>.FindFromTail<int>(list, 2);
+            var list = LinkedListNode<int>.Build(new int[] {0, 1, 2 });
+            var result = LinkedListNode<int>.FindFromTail(list, 2);
             Assert.IsTrue(result.Value == 0);
 
         }
@@ -41,8 +41,8 @@ namespace PG.LL.Tests
         [TestMethod]
         public void Find_0_In_ListOf3()
         {
-            var list = Node<int>.Build<int>(new int[] { 0, 1, 2 });
-            var result = Node<int>.FindFromTail<int>(list, 0);
+            var list = LinkedListNode<int>.Build(new int[] { 0, 1, 2 });
+            var result = LinkedListNode<int>.FindFromTail(list, 0);
             Assert.IsTrue(result.Value == 2);
 
         }
@@ -50,8 +50,8 @@ namespace PG.LL.Tests
         [TestMethod]
         public void Find_3_In_ListOf5()
         {
-            var list = Node<int>.Build<int>(new int[] { 0, 1, 2, 3, 4 });
-            var result = Node<int>.FindFromTail<int>(list, 3);
+            var list = LinkedListNode<int>.Build(new int[] { 0, 1, 2, 3, 4 });
+            var result = LinkedListNode<int>.FindFromTail(list, 3);
             Assert.IsTrue(result.Value == 1);
 
         }
@@ -59,8 +59,8 @@ namespace PG.LL.Tests
         [TestMethod]
         public void Find_3_In_ListOf6()
         {
-            var list = Node<int>.Build<int>(new int[] { 0, 1, 2, 3, 4, 5 });
-            var result = Node<int>.FindFromTail<int>(list, 3);
+            var list = LinkedListNode<int>.Build(new int[] { 0, 1, 2, 3, 4, 5 });
+            var result = LinkedListNode<int>.FindFromTail(list, 3);
             Assert.IsTrue(result.Value == 2);
 
         }
