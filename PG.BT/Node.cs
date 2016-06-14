@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace PG.BT
 {
-    public class Node
+    public class TreeNode
     {
         public int Value { get; set; }
-        public Node Left { get; set; }
-        public Node Right { get; set; }
+        public TreeNode Left { get; set; }
+        public TreeNode Right { get; set; }
     }
 }

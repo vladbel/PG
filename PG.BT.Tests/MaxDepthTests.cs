@@ -16,7 +16,7 @@ namespace PG.BT.Tests
         [TestMethod]
         public void ShallHaveDepthOf_0_WhenLeftAndRightIsNull()
         {
-            var tree = new Node();
+            var tree = new TreeNode();
             var depth = Tree.MaxDepth(tree);
             Assert.IsTrue(depth == 0);
         }
@@ -25,7 +25,7 @@ namespace PG.BT.Tests
         [TestMethod]
         public void ShallHaveDepthOf_1_WhenLeftAndRightIsNotNull()
         {
-            var tree = new Node() { Left = new Node(), Right = new Node() };
+            var tree = new TreeNode() { Left = new TreeNode(), Right = new TreeNode() };
             var depth = Tree.MaxDepth(tree);
             Assert.IsTrue(depth == 1);
         }
@@ -33,7 +33,7 @@ namespace PG.BT.Tests
         [TestMethod]
         public void ShallHaveDepthOf_1_WhenLeftIsNull()
         {
-            var tree = new Node() {Left = null, Right = new Node() };
+            var tree = new TreeNode() {Left = null, Right = new TreeNode() };
             var depth = Tree.MaxDepth(tree);
             Assert.IsTrue(depth == 1);
         }
@@ -41,7 +41,7 @@ namespace PG.BT.Tests
         [TestMethod]
         public void ShallHaveDepthOf_1_WhenRightIsNull()
         {
-            var tree = new Node() { Left = new Node(), Right = null };
+            var tree = new TreeNode() { Left = new TreeNode(), Right = null };
             var depth = Tree.MaxDepth(tree);
             Assert.IsTrue(depth == 1);
         }
@@ -49,7 +49,7 @@ namespace PG.BT.Tests
         [TestMethod]
         public void ShallHaveDepthOf_2()
         {
-            var tree = new Node() { Left = new Node() { Left = new Node(), Right = null}, Right = null };
+            var tree = new TreeNode() { Left = new TreeNode() { Left = new TreeNode(), Right = null}, Right = null };
             var depth = Tree.MaxDepth(tree);
             Assert.IsTrue(depth == 2);
         }
