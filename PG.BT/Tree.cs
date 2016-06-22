@@ -79,5 +79,35 @@ namespace PG.BT
                 };
             }
         }
+
+        public static TreeNode FirstCommonAncestor (TreeNode root, TreeNode n1, TreeNode n2)
+        {
+            if (root == null || n1 == null || n2 == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            return null;
+        }
+
+        public static bool ContainSubtreeFromRoot (TreeNode root, TreeNode subTreeRoot)
+        {
+            if (root == null && subTreeRoot != null)
+            {
+                return false;
+            }
+            else if (subTreeRoot == null)
+            {
+                return true;
+            }
+            else if (root.Value != subTreeRoot.Value)
+            {
+                return false;
+            }
+            else
+            {
+                return ContainSubtreeFromRoot(root.Left, subTreeRoot.Left) && ContainSubtreeFromRoot(root.Right, subTreeRoot.Right);
+            }
+        }
     }
 }
