@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PG.BT.Tests
 {
     [TestClass]
-    public class UnitTest1BuildBalancedTreeFromArrayTests
+    public class BuildBalancedTreeFromArrayTests
     {
         [TestMethod]
         public void BuildFrom_EmptyArray()
@@ -50,7 +50,5 @@ namespace PG.BT.Tests
             Assert.AreEqual(4, root.Right.Right.Value);
             Assert.IsNull(root.Right.Left);
         }
-
-
     }
 }
