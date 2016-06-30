@@ -14,9 +14,9 @@ namespace PG.Search
             int maxLength = 0;
             var result = new List<string>();
 
-            for ( var i = 0; i < s1.Length - 1; i++)
+            for ( var i = 0; i < s1.Length; i++)
             {
-                for (var j = 0; j < s2.Length - 1; j++)
+                for (var j = 0; j < s2.Length; j++)
                 {
                     if (s1[i] == s2[j])
                     {
