@@ -57,6 +57,8 @@
     <Compile Include="MaxValueTests.cs" />
     <Compile Include="BuildBalancedTreeFromArrayTests.cs" />
     <Compile Include="ContainsSubtreeFromRootTests.cs" />
+    <Compile Include="TestTreeFactory.cs" />
+    <Compile Include="TrverseInOrderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PG.BT\PG.BT.csproj">

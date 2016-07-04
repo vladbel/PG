@@ -109,5 +109,16 @@ namespace PG.BT
                 return ContainSubtreeFromRoot(root.Left, subTreeRoot.Left) && ContainSubtreeFromRoot(root.Right, subTreeRoot.Right);
             }
         }
+
+        public static void TraverseInOrder(TreeNode root, Action<TreeNode > processNode)
+        {
+            if ( root == null)
+            {
+                return;
+            }
+            TraverseInOrder(root.Left, processNode);
+            processNode(root);
+            TraverseInOrder(root.Right, processNode);
+        }
     }
 }
