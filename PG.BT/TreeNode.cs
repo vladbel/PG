@@ -11,5 +11,10 @@ namespace PG.BT
         public int Value { get; set; }
         public TreeNode Left { get; set; }
         public TreeNode Right { get; set; }
+
+        #region Custom tree node properties
+        public TreeNode InOrderNext { get; set; }
+        public TreeNode InOrderPrevious { get; set; }
+        #endregion
     }
 }
