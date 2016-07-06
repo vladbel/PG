@@ -110,6 +110,7 @@ namespace PG.BT
             }
         }
 
+        #region Traverse In-Order;
         public static void TraverseInOrder(TreeNode root, Action<TreeNode > processNode)
         {
             if ( root == null)
@@ -120,5 +121,59 @@ namespace PG.BT
             processNode(root);
             TraverseInOrder(root.Right, processNode);
         }
+
+
+        /// <summary>
+        /// TODO:
+        /// Could be done simplier:
+        /// iterativeInorder(node)
+        ///s ← empty stack
+            ///while (not s.isEmpty() or node ≠ null)
+            ///     if (node ≠ null)
+            ///      s.push(node)
+            ///      node ← node.left
+            ///    else
+            ///      node ← s.pop()
+            ///      visit(node)
+            ///      node ← node.right
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="processNode"></param>
+        public static void TraverseInOrderIterative(TreeNode root, Action<TreeNode> processNode)
+        {
+            if (root == null)
+            {
+                throw new NullReferenceException();
+            }
+            var traverseStack = new Stack<TreeNode>();
+            traverseStack.Push(root);
+            var current = root;
+
+            while (current!= null)
+            {
+                while (current.Left != null)
+                {
+                    traverseStack.Push(current.Left);
+                    current = current.Left;
+                }
+
+                if (traverseStack.Count > 0)
+                {
+                    current = traverseStack.Pop();
+                }
+                else
+                {
+                    break;
+                }
+                processNode(current);
+
+                if (current.Right != null)
+                {
+                    traverseStack.Push(current.Right);
+                    current = current.Right;
+                }
+            }
+        }
+        #endregion
     }
 }

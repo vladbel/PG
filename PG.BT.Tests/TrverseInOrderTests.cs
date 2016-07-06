@@ -30,6 +30,28 @@ namespace PG.BT.Tests
         }
 
         [TestMethod]
+        public void BuildList_Iterative_From_BST_1_7()
+        {
+            // Setup
+            var tree = TestTreeFactory.BST_1_7;
+
+            var result = new List<TreeNode>();
+            Action<TreeNode> processNode = (TreeNode n) =>
+            {
+                result.Add(n);
+            };
+
+            // Act
+            Tree.TraverseInOrderIterative(tree, processNode);
+
+            // Assert
+            for (var i = 0; i < result.Count; i++)
+            {
+                Assert.AreEqual(result[i].Value, i + 1);
+            }
+        }
+
+        [TestMethod]
         public void BuildLinkedList_From_BST_1_7()
         {
             // Setup
