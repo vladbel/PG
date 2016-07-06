@@ -86,7 +86,7 @@ namespace PG.BT
             {
                 throw new NullReferenceException();
             }
-
+            throw new NotImplementedException();
             return null;
         }
 
