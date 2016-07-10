@@ -46,16 +46,22 @@ namespace PG.Search
             return result;
         }
 
+
         public static Tuple<int, int> FindMaxCrossSubarray( int[] array,
                                                             int low,
                                                             int mid,
                                                             int high)
         {
+            if (low == high)
+            {
+                return new Tuple<int, int>(low, high);
+            }
+
             int maxLow = mid, maxHigh = mid;
             int maxSum = int.MinValue;
             int currentSum = 0;
 
-            for (int i = mid; i<=low; i--)
+            for (int i = mid; i>=low; i--)
             {
                 currentSum += array[i];
                 if (currentSum > maxSum)
@@ -66,7 +72,7 @@ namespace PG.Search
             }
 
             currentSum = maxSum;
-            for (int i = mid+1; i <= high; i++)
+            for (int i = mid + 1; i <= high; i++)
             {
                 currentSum += array[i];
                 if (currentSum > maxSum)

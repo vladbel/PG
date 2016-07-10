@@ -56,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MaxSubarrayTestsBase.cs" />
     <Compile Include="MaxSubArrayN2Tests.cs" />
+    <Compile Include="MaxCrossSubarrayTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PG.Search\PG.Search.csproj">
