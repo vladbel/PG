@@ -14,42 +14,33 @@ namespace PG.Search
             var result = new List<int[]>();
             var maxSum = int.MinValue;
 
+            Action<int, int> checkIfMaxSubArray = (start, length) =>
+            {
+                if (subArraySums[start] > maxSum)
+                {
+                    maxSum = subArraySums[start];
+                    result = new List<int[]>();
+                }
 
+                if (subArraySums[start] >= maxSum)
+                {
+                    var subArray = new int[length];
+                    Array.Copy(array, start, subArray, 0, length);
+                    result.Add(subArray);
+                }
+            };
 
             for (var i = 0; i < array.Length; i++)
             {
                 // initialize subArraySum with original element value
                 subArraySums[i] = array[i];
                 // Shall also check if single original element may form maxSubArray
-                if (subArraySums[i] > maxSum)
-                {
-                    maxSum = subArraySums[i];
-                    result = new List<int[]>();
-                }
-
-                if (subArraySums[i] >= maxSum)
-                {
-                    var subArray = new int[1];
-                    subArray[0] = array[i];
-                    result.Add(subArray);
-                }
+                checkIfMaxSubArray(i, 1);
 
                 for (int j = 0; j < i; j ++)
                 {
                      subArraySums[j] += array[i];
-
-                    if ( subArraySums[j] > maxSum)
-                    {
-                        maxSum = subArraySums[j];
-                        result = new List<int[]>();
-                    }
-
-                    if (subArraySums[j] >= maxSum)
-                    {
-                        var subArray = new int[i - j + 1];
-                        Array.Copy( array, j , subArray, 0, i - j + 1);
-                        result.Add(subArray);
-                    }
+                    checkIfMaxSubArray(j, i - j + 1);
                 }
             }
             return result;
