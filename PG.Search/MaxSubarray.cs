@@ -18,8 +18,9 @@ namespace PG.Search
 
             for (var i = 0; i < array.Length; i++)
             {
+                // initialize subArraySum with original element value
                 subArraySums[i] = array[i];
-                // we shall also do here
+                // Shall also check if single original element may form maxSubArray
                 if (subArraySums[i] > maxSum)
                 {
                     maxSum = subArraySums[i];
