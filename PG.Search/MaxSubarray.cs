@@ -83,5 +83,29 @@ namespace PG.Search
             }
             return new Tuple<int, int>(maxLow, maxHigh);
         }
+
+        public static List<int[]> FindMaxSubarray_NlnN (int[] array)
+        {
+            List<int[]> result = null;
+            int maxSum = int.MinValue;
+
+            Action<int[], int, int> findMaxSubarray = (subarray, low, high) =>
+            {
+                if( low == high)
+                {
+                    // base case
+                }
+            };
+
+
+
+            
+
+            return result;
+        }
+
+
+
+
     }
 }
