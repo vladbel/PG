@@ -59,6 +59,7 @@
     <Compile Include="ContainsSubtreeFromRootTests.cs" />
     <Compile Include="TestTreeFactory.cs" />
     <Compile Include="TrverseInOrderTests.cs" />
+    <Compile Include="HeapTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PG.BT\PG.BT.csproj">
