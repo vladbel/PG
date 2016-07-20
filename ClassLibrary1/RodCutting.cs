@@ -8,27 +8,39 @@ namespace PG.DP
 {
     public class RodCutting
     {
-        public static int Cut_Recurcive ( int length, int[] prices)
+        public static Tuple<int, int, List<int>> Cut_Recurcive ( int length, int[] prices)
         {
-            int maxRevenue = prices[length];
+            int maxRevenue = int.MinValue;
+            List<int> cuts = null;
 
             if (length == 0)
             {
-                return prices[0];
+                return new Tuple<int, int, List<int>>(prices[0], 0, new List<int>());
             }
 
             else if (length == 1)
             {
-                return prices[1];
+                cuts = new List<int>();
+                cuts.Add(1);
+                return new Tuple<int, int, List<int>>(prices[1], 0, cuts);
             }
 
             for (var i = 1; i < length; i++)
             {
-                maxRevenue = Math.Max(maxRevenue, 
-                    prices[i] + Cut_Recurcive(length - i, prices));
+                var currentResult = Cut_Recurcive(length - i, prices);
+
+                if (prices[i] + currentResult.Item1 > maxRevenue)
+                {
+                    maxRevenue = prices[i] + currentResult.Item1;
+                    cuts = new List<int>();
+                    cuts.AddRange(currentResult.Item3);
+                    cuts.Add(i);
+                }
+                
             }
 
-            return maxRevenue;
+            var result = new Tuple<int, int, List<int>>(maxRevenue, 0, cuts);
+            return result;
         }
     }
 }
