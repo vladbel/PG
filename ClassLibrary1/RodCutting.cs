@@ -8,26 +8,51 @@ namespace PG.DP
 {
     public class RodCutting
     {
-        public static Tuple<int, int, List<int>> Cut_Recurcive ( int length, int[] prices)
+        private static int[] callCount;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="length"></param>
+        /// <param name="prices"></param>
+        /// <param name="reset"></param>
+        /// <returns>
+        /// optimal Revenue
+        /// call count
+        /// cuts
+        ///</returns>
+        public static Tuple<int,int[], List<int>> Cut_Recurcive ( int length,
+                                                                   int[] prices,
+                                                                   bool reset)
         {
-            int maxRevenue = int.MinValue;
-            List<int> cuts = null;
+            if (reset)
+            {
+                callCount = new int[length + 1];
+            }
+            callCount[length]++;
+
+            int maxRevenue = prices[length];
+            List<int> cuts = new List<int>() { length };
 
             if (length == 0)
             {
-                return new Tuple<int, int, List<int>>(prices[0], 0, new List<int>());
+                return new Tuple<int, int[], List<int>>(prices[0],
+                                                        callCount,
+                                                        new List<int>());
             }
 
             else if (length == 1)
             {
                 cuts = new List<int>();
                 cuts.Add(1);
-                return new Tuple<int, int, List<int>>(prices[1], 0, cuts);
+                return new Tuple<int, int[], List<int>>(prices[1],
+                                                        callCount,
+                                                        cuts);
             }
 
             for (var i = 1; i < length; i++)
             {
-                var currentResult = Cut_Recurcive(length - i, prices);
+                var currentResult = Cut_Recurcive(length - i, prices, false);
 
                 if (prices[i] + currentResult.Item1 > maxRevenue)
                 {
@@ -36,10 +61,9 @@ namespace PG.DP
                     cuts.AddRange(currentResult.Item3);
                     cuts.Add(i);
                 }
-                
             }
 
-            var result = new Tuple<int, int, List<int>>(maxRevenue, 0, cuts);
+            var result = new Tuple<int, int[], List<int>>(maxRevenue, callCount, cuts);
             return result;
         }
     }
