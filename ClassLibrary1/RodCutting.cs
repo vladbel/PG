@@ -32,15 +32,14 @@ namespace PG.DP
             callCount[length]++;
 
             int maxRevenue = prices[length];
-            List<int> cuts = new List<int>() { length };
+            List<int> cuts = new List<int>();
 
             if (length == 0)
             {
                 return new Tuple<int, int[], List<int>>(prices[0],
                                                         callCount,
-                                                        new List<int>());
+                                                        cuts);
             }
-
             else if (length == 1)
             {
                 cuts = new List<int>();
@@ -48,6 +47,10 @@ namespace PG.DP
                 return new Tuple<int, int[], List<int>>(prices[1],
                                                         callCount,
                                                         cuts);
+            }
+            else
+            {
+                cuts = new List<int>() { length };
             }
 
             for (var i = 1; i < length; i++)
@@ -57,8 +60,7 @@ namespace PG.DP
                 if (prices[i] + currentResult.Item1 > maxRevenue)
                 {
                     maxRevenue = prices[i] + currentResult.Item1;
-                    cuts = new List<int>();
-                    cuts.AddRange(currentResult.Item3);
+                    cuts = currentResult.Item3;
                     cuts.Add(i);
                 }
             }

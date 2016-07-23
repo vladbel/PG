@@ -24,7 +24,7 @@ namespace PG.DP.Tests
         }
 
         [TestMethod]
-        public void When_Length2()
+        public void When_Length2_Return_2x1()
         {
             var prices = new int[] { 0, 2, 3 };
             var result = cutRod(2, prices, true);
@@ -32,6 +32,17 @@ namespace PG.DP.Tests
             Assert.AreEqual(4, result.Item1);
             Assert.AreEqual(1, result.Item3[0]);
             Assert.AreEqual(1, result.Item3[1]);
+        }
+
+        [TestMethod]
+        public void When_Length2_Return_1x2()
+        {
+            var prices = new int[] { 0, 1, 3 };
+            var result = cutRod(2, prices, true);
+
+            Assert.AreEqual(3, result.Item1);
+            Assert.AreEqual(1, result.Item3.Count);
+            Assert.AreEqual(2, result.Item3[0]);
         }
 
         [TestMethod]
@@ -72,6 +83,26 @@ namespace PG.DP.Tests
 
             Assert.AreEqual(5, result.Item1);
             Assert.AreEqual(1, result.Item3.Count);
+        }
+
+        [TestMethod]
+        public void When_Length5_Return_1x5()
+        {
+            var prices = new int[] { 0, 1, 1, 1, 1, 5 };
+            var result = cutRod(5, prices, true);
+
+            Assert.AreEqual(5, result.Item1);
+            Assert.AreEqual(1, result.Item3.Count);
+        }
+
+        [TestMethod]
+        public void When_Length5_Return_2and3()
+        {
+            var prices = new int[] { 0, 1, 3, 5, 1, 5 };
+            var result = cutRod(5, prices, true);
+
+            Assert.AreEqual(8, result.Item1);
+            Assert.AreEqual(2, result.Item3.Count);
         }
     }
 }
