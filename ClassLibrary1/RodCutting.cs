@@ -8,7 +8,9 @@ namespace PG.DP
 {
     public class RodCutting
     {
-        private static int[] callCount;
+        private static int[] _callCount;
+
+        private static Dictionary<int, Tuple<int, int[], List<int>>> _cuts;
 
         /// <summary>
         /// 
@@ -27,9 +29,9 @@ namespace PG.DP
         {
             if (reset)
             {
-                callCount = new int[length + 1];
+                _callCount = new int[length + 1];
             }
-            callCount[length]++;
+            _callCount[length]++;
 
             int maxRevenue = prices[length];
             List<int> cuts = new List<int>();
@@ -37,7 +39,7 @@ namespace PG.DP
             if (length == 0)
             {
                 return new Tuple<int, int[], List<int>>(prices[0],
-                                                        callCount,
+                                                        _callCount,
                                                         cuts);
             }
             else if (length == 1)
@@ -45,7 +47,7 @@ namespace PG.DP
                 cuts = new List<int>();
                 cuts.Add(1);
                 return new Tuple<int, int[], List<int>>(prices[1],
-                                                        callCount,
+                                                        _callCount,
                                                         cuts);
             }
             else
@@ -65,7 +67,81 @@ namespace PG.DP
                 }
             }
 
-            var result = new Tuple<int, int[], List<int>>(maxRevenue, callCount, cuts);
+            var result = new Tuple<int, int[], List<int>>(maxRevenue, _callCount, cuts);
+            return result;
+        }
+
+
+
+        /// <summary>
+        /// Top Down implementation ( modifyed recurcive)
+        /// </summary>
+        /// <param name="length"></param>
+        /// <param name="prices"></param>
+        /// <param name="reset"></param>
+        /// <returns>
+        /// optimal Revenue
+        /// call count
+        /// cuts
+        ///</returns>
+        public static Tuple<int, int[], List<int>> Cut_DP1(int length,
+                                                                   int[] prices,
+                                                                   bool reset)
+        {
+            if (reset)
+            {
+                _callCount = new int[length + 1];
+                _cuts = new Dictionary<int, Tuple<int, int[], List<int>>>();
+            }
+            _callCount[length]++;
+
+            int maxRevenue = prices[length];
+            List<int> cuts = new List<int>();
+
+            if (length == 0)
+            {
+                return new Tuple<int, int[], List<int>>(prices[0],
+                                                        _callCount,
+                                                        cuts);
+            }
+            else if (length == 1)
+            {
+                cuts = new List<int>();
+                cuts.Add(1);
+                return new Tuple<int, int[], List<int>>(prices[1],
+                                                        _callCount,
+                                                        cuts);
+            }
+            else
+            {
+                cuts = new List<int>() { length };
+            }
+
+            for (var i = 1; i < length; i++)
+            {
+                Tuple<int, int[], List<int>> currentResult;
+                if (!_cuts.ContainsKey(length - i))
+                {
+                    currentResult = Cut_DP1(length - i, prices, false);
+                }
+                else
+                {
+                    currentResult = _cuts[length - i];
+                }
+
+                if (prices[i] + currentResult.Item1 > maxRevenue)
+                {
+                    maxRevenue = prices[i] + currentResult.Item1;
+                    cuts = new List<int>();
+                    cuts.AddRange(currentResult.Item3);
+                    cuts.Add(i);
+                }
+            }
+
+            var result = new Tuple<int, int[], List<int>>(maxRevenue, 
+                                                         _callCount, 
+                                                          cuts);
+            _cuts.Add(length, result);
             return result;
         }
     }

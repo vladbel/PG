@@ -55,6 +55,7 @@
     <Compile Include="RodCuttingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RodCuttingRecurciveTests.cs" />
+    <Compile Include="RodCutting_DP1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\PG.DP.csproj">
