@@ -108,9 +108,10 @@ namespace PG.DP
             {
                 cuts = new List<int>();
                 cuts.Add(1);
-                return new Tuple<int, int[], List<int>>(prices[1],
+                _cuts.Add (1,  new Tuple<int, int[], List<int>>(prices[1],
                                                         _callCount,
-                                                        cuts);
+                                                        cuts));
+                return _cuts[1];
             }
             else
             {
