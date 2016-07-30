@@ -57,6 +57,8 @@
     <Compile Include="RodCuttingRecurciveTests.cs" />
     <Compile Include="RodCutting_DP1.cs" />
     <Compile Include="RodCuttingPerfTests.cs" />
+    <Compile Include="CoinsCountTest.cs" />
+    <Compile Include="CoinsChangeRecurciveTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\PG.DP.csproj">
