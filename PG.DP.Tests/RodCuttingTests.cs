@@ -88,10 +88,10 @@ namespace PG.DP.Tests
         [TestMethod]
         public void When_Length5_Return_1x5()
         {
-            var prices = new int[] { 0, 1, 1, 1, 1, 5 };
+            var prices = new int[] { 0, 1, 1, 1, 1, 6 };
             var result = cutRod(5, prices, true);
 
-            Assert.AreEqual(5, result.Item1);
+            Assert.AreEqual(6, result.Item1);
             Assert.AreEqual(1, result.Item3.Count);
         }
 

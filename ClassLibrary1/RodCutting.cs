@@ -139,5 +139,42 @@ namespace PG.DP
             return result;
         }
 
+
+        public static Tuple<int, int[], List<int>> Cut_DP2_BottomUp(int length,
+                                                           int[] prices,
+                                                           bool reset)
+        {
+            if (reset)
+            {
+                _callCount = new int[length + 1];
+                _cuts = new Dictionary<int, Tuple<int, int[], List<int>>>();
+                _cuts.Add (0, new Tuple<int, int[], List<int>>(0,
+                                                               new int[]{ },
+                                                               new List<int>()));
+            }
+            _callCount[length]++;
+
+
+
+            for ( var i = 1; i <= length; i ++)
+            {
+                Tuple<int, int[], List<int>> currentResult = null;
+
+                for (var j = 1; j <= i; j++)
+                {
+                    if ( currentResult == null 
+                        ||prices[j] + _cuts[i - j].Item1 > currentResult.Item1)
+                    {
+                        var newCuts = new List<int>(_cuts[i - j].Item3);
+                        newCuts.Add(j);
+                        currentResult = new Tuple<int, int[], List<int>>(prices[j] + _cuts[i - j].Item1,
+                                                                            null, newCuts);
+                    }
+                }
+                _cuts.Add(i, currentResult);
+            }
+
+            return _cuts[length];
+        }
     }
 }
