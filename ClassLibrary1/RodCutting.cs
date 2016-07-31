@@ -98,15 +98,8 @@ namespace PG.DP
             int maxRevenue = prices[length];
             List<int> cuts = new List<int>();
 
-            if (length == 0)
+             if (length == 1)
             {
-                return new Tuple<int, int[], List<int>>(prices[0],
-                                                        _callCount,
-                                                        cuts);
-            }
-            else if (length == 1)
-            {
-                cuts = new List<int>();
                 cuts.Add(1);
                 _cuts.Add (1,  new Tuple<int, int[], List<int>>(prices[1],
                                                         _callCount,
@@ -145,5 +138,6 @@ namespace PG.DP
             _cuts.Add(length, result);
             return result;
         }
+
     }
 }
