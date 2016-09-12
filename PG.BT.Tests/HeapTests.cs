@@ -36,5 +36,17 @@ namespace PG.BT.Tests
             Assert.AreEqual(4, Heap.Right(1));
             Assert.AreEqual(6, Heap.Right(2));
         }
+
+        [TestMethod]
+        public void MaintainMaxHeapProperty01()
+        {
+            var array = new int[] { 1, 3, 2 };
+            Heap.SetMaxHipProperty(array, 0);
+
+            Assert.IsTrue(array[0] > array[1]);
+            Assert.IsTrue(array[0] > array[2]);
+        }
+
+
     }
 }

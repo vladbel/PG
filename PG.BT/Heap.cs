@@ -38,10 +38,11 @@ namespace PG.BT
                 largest = index;
             }
 
-            if (rightChild < array.Length && array[rightChild] > array[index])
+            if (rightChild < array.Length && array[rightChild] > array[largest])
             {
                 largest = rightChild;
             }
+
             if (largest != index)
             {
                 var a = array[index];
