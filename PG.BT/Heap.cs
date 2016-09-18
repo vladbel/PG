@@ -51,5 +51,13 @@ namespace PG.BT
                 SetMaxHipProperty(array, largest);
             }
         }
+
+        public static void HipifyArray ( int[] array)
+        {
+            for ( var i = array.Length/2; i >=0; i--)
+            {
+                SetMaxHipProperty(array, i);
+            }
+        }
     }
 }

@@ -47,6 +47,30 @@ namespace PG.BT.Tests
             Assert.IsTrue(array[0] > array[2]);
         }
 
+        [TestMethod]
+        public void HipifyArraytest_01()
+        {
+            var array = new int[] {1,2,3};
+            Heap.HipifyArray(array);
+            Assert.AreEqual(3, array[0]);
 
+            array = new int[] { 1,3,2 };
+            Heap.HipifyArray(array);
+            Assert.AreEqual(3, array[0]);
+
+            array = new int[] { 3, 2, 1 };
+            Heap.HipifyArray(array);
+            Assert.AreEqual(3, array[0]);
+
+            array = new int[] { 2, 3};
+            Heap.HipifyArray(array);
+            Assert.AreEqual(3, array[0]);
+
+            array = new int[] { 0,1,2,3 };
+            Heap.HipifyArray(array);
+            Assert.AreEqual(3, array[0]);
+        }
     }
+
+
 }
