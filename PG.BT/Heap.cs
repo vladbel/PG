@@ -23,13 +23,19 @@ namespace PG.BT
             return 2 * (i + 1);
         }
 
-        public static void SetMaxHipProperty( int[] array, int index)
+        public static void SetMaxHipProperty( int[] array, 
+                                              int index,
+                                              int hipSize = -1)
         {
             var leftChild = Left(index);
             var rightChild = Right(index);
             int largest;
+            if (hipSize < 0)
+            {
+                hipSize = array.Length;
+            }
 
-            if (leftChild < array.Length && array[leftChild] > array[index])
+            if (leftChild < hipSize && array[leftChild] > array[index])
             {
                 largest = leftChild;
             }
@@ -38,7 +44,7 @@ namespace PG.BT
                 largest = index;
             }
 
-            if (rightChild < array.Length && array[rightChild] > array[largest])
+            if (rightChild < hipSize && array[rightChild] > array[largest])
             {
                 largest = rightChild;
             }
