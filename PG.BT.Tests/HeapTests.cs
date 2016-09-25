@@ -41,33 +41,33 @@ namespace PG.BT.Tests
         public void MaintainMaxHeapProperty01()
         {
             var array = new int[] { 1, 3, 2 };
-            Heap.SetMaxHipProperty(array, 0);
+            Heap.SetMaxHeapProperty(array, 0);
 
             Assert.IsTrue(array[0] > array[1]);
             Assert.IsTrue(array[0] > array[2]);
         }
 
         [TestMethod]
-        public void HipifyArraytest_01()
+        public void HeapifyArraytest_01()
         {
             var array = new int[] {1,2,3};
-            Heap.HipifyArray(array);
+            Heap.HeapifyArray(array);
             Assert.AreEqual(3, array[0]);
 
             array = new int[] { 1,3,2 };
-            Heap.HipifyArray(array);
+            Heap.HeapifyArray(array);
             Assert.AreEqual(3, array[0]);
 
             array = new int[] { 3, 2, 1 };
-            Heap.HipifyArray(array);
+            Heap.HeapifyArray(array);
             Assert.AreEqual(3, array[0]);
 
             array = new int[] { 2, 3};
-            Heap.HipifyArray(array);
+            Heap.HeapifyArray(array);
             Assert.AreEqual(3, array[0]);
 
             array = new int[] { 0,1,2,3 };
-            Heap.HipifyArray(array);
+            Heap.HeapifyArray(array);
             Assert.AreEqual(3, array[0]);
         }
     }

@@ -23,19 +23,19 @@ namespace PG.BT
             return 2 * (i + 1);
         }
 
-        public static void SetMaxHipProperty( int[] array, 
+        public static void SetMaxHeapProperty( int[] array, 
                                               int index,
-                                              int hipSize = -1)
+                                              int heapSize = -1)
         {
             var leftChild = Left(index);
             var rightChild = Right(index);
             int largest;
-            if (hipSize < 0)
+            if (heapSize < 0)
             {
-                hipSize = array.Length;
+                heapSize = array.Length;
             }
 
-            if (leftChild < hipSize && array[leftChild] > array[index])
+            if (leftChild < heapSize && array[leftChild] > array[index])
             {
                 largest = leftChild;
             }
@@ -44,7 +44,7 @@ namespace PG.BT
                 largest = index;
             }
 
-            if (rightChild < hipSize && array[rightChild] > array[largest])
+            if (rightChild < heapSize && array[rightChild] > array[largest])
             {
                 largest = rightChild;
             }
@@ -54,15 +54,15 @@ namespace PG.BT
                 var a = array[index];
                 array[index] = array[largest];
                 array[largest] = a;
-                SetMaxHipProperty(array, largest);
+                SetMaxHeapProperty(array, largest, heapSize);
             }
         }
 
-        public static void HipifyArray ( int[] array)
+        public static void HeapifyArray ( int[] array)
         {
             for ( var i = array.Length/2; i >=0; i--)
             {
-                SetMaxHipProperty(array, i);
+                SetMaxHeapProperty(array, i);
             }
         }
     }

@@ -57,6 +57,7 @@
     <Compile Include="SortTestsBase.cs" />
     <Compile Include="QuickSortTests.cs" />
     <Compile Include="InsertionSortTests.cs" />
+    <Compile Include="HeapSortTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PG.Sort\PG.Sort.csproj">
