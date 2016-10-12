@@ -7,8 +7,8 @@
     <ProjectGuid>{BB0CA257-0359-4572-B496-D87D1BC34539}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClassLibrary1</RootNamespace>
-    <AssemblyName>ClassLibrary1</AssemblyName>
+    <RootNamespace>PG.DP</RootNamespace>
+    <AssemblyName>PG.DP</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Coins.cs" />
+    <Compile Include="LongestSubarray.cs" />
     <Compile Include="RodCutting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
