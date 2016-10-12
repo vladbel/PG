@@ -61,6 +61,7 @@
     <Compile Include="CoinsChangeRecurciveTests.cs" />
     <Compile Include="RodCutting_DP2_Tests.cs" />
     <Compile Include="LongestSubarrayWhichAddsToGivenSumTests.cs" />
+    <Compile Include="RepeatingElementMaxCountTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\PG.DP.csproj">
