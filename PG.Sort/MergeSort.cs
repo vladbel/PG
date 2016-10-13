@@ -43,19 +43,20 @@ namespace PG.Sort
             int i2 = 0;
             while (i1 < bufferMid || (bufferMid + i2) < buffer.Length)
             {
-
-                while ((i1 < bufferMid && bufferMid + i2 < buffer.Length
-                                && buffer[i1] <= buffer[bufferMid + i2])  //copy from left subarray
-                       || (bufferMid + i2 == buffer.Length
+                //copy from left subarray
+                while ((i1 < bufferMid && bufferMid + i2 < buffer.Length  // if both indexes within the bounds
+                                && buffer[i1] <= buffer[bufferMid + i2])  // and current left element is less then current right
+                       || (bufferMid + i2 == buffer.Length                // OR right index exausted
                                 &&  i1 < bufferMid))
                 {
                     array [leftStart + i1 + i2 ] = buffer[i1];
                     i1++;
                 }
 
+                // copy from right subarray
                 while ((bufferMid + i2 < buffer.Length
-                                &&  i1 < bufferMid  && buffer[i1] >= buffer[bufferMid + i2]) 
-                          || ( i1 == bufferMid && bufferMid + i2 < buffer.Length) ) // copy from right subarray
+                                &&  i1 < bufferMid  && buffer[i1] >= buffer[bufferMid + i2])     // current right lless then current left element
+                          || ( i1 == bufferMid && bufferMid + i2 < buffer.Length) )             //Left index exausted
                 {
                     array[leftStart + i1 + i2] = buffer[bufferMid + i2];
                     i2++;
