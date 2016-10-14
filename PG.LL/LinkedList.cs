@@ -110,5 +110,81 @@ namespace PG.LL
         }
 
         #endregion
+
+        #region Find Value
+        public static LinkedListNode<T> Find (LinkedListNode<T> head, T value)
+        {
+            do
+            {
+                if (head.Value.Equals(value))
+                {
+                    return head;
+                }
+                head = head.Next;
+            } while (head != null);
+
+            return null;
+        }
+
+        public static LinkedListNode<int> Merge (LinkedListNode<int> head1, LinkedListNode<int> head2)
+        {
+            LinkedListNode < int > head =null;
+            LinkedListNode<int> runner = null;
+
+            if (head1 == null)
+            {
+                return head2;
+            }
+
+            if (head2 == null)
+            {
+                return head1;
+            }
+
+            if (head1.Value > head2.Value)
+            {
+                head = runner = head2;
+                head2 = head2.Next;
+            }
+            else
+            {
+                head = runner = head1;
+                head1 = head1.Next;
+            }
+
+            while ( head1 != null || head2 != null)
+            {
+                while ( head1 != null && head2 != null && head1.Value <= head2.Value)
+                {
+                    runner.Next = head1;
+                    runner = head1;
+                    head1 = head1.Next;
+                }
+
+                while (head1 != null && head2 == null )
+                {
+                    runner.Next = head1;
+                    runner = head1;
+                    head1 = head1.Next;
+                }
+
+                while (head1 != null && head2 != null && head1.Value >= head2.Value)
+                {
+                    runner.Next = head2;
+                    runner = head2;
+                    head2 = head2.Next;
+                }
+
+                while (head1 == null && head2 != null )
+                {
+                    runner.Next = head2;
+                    runner = head2;
+                    head2 = head2.Next;
+                }
+            }
+
+            return head;
+        }
+        #endregion
     }
 }
