@@ -58,6 +58,8 @@
     <Compile Include="MergeTests.cs" />
     <Compile Include="ReverseTests.cs" />
     <Compile Include="AddTests.cs" />
+    <Compile Include="MultiplyWithShiftTests.cs" />
+    <Compile Include="MultiplyTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PG.LL\PG.LL.csproj">

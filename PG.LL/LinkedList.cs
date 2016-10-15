@@ -150,6 +150,15 @@ namespace PG.LL
         #region Ariphmetic ops
         public static LinkedListNode<int> Add(LinkedListNode<int> head1, LinkedListNode<int> head2)
         {
+            if (head1 == null)
+            {
+                return head2;
+            }
+            else if (head2 == null)
+            {
+                return head1;
+            }
+
             int carry = 0;
             LinkedListNode<int> result = null;
             LinkedListNode<int> resultCurrent = null;
@@ -179,11 +188,85 @@ namespace PG.LL
                     resultCurrent = newNode;
                 }
 
-                head1 = head1.Next;
-                head2 = head2.Next;
+                if (head1 != null)
+                {
+                    head1 = head1.Next;
+                }
+                if (head2 != null)
+                {
+                    head2 = head2.Next;
+                }
+
             }
             return result;
         }
+
+        public static LinkedListNode<int> Multiply (LinkedListNode<int> head, int num, int shift = 0)
+        {
+            int carry = 0;
+
+            LinkedListNode<int> resultHead = null;
+            LinkedListNode<int> currentResultNode = null;
+
+
+            for (var i = 0; i < shift; i++)
+            {
+                if (currentResultNode == null)
+                {
+                    resultHead = currentResultNode = new LinkedListNode<int>();
+                }
+                else
+                {
+                    currentResultNode.Next = new LinkedListNode<int>();
+                    currentResultNode = currentResultNode.Next;
+                }
+                currentResultNode.Value = 0;
+            }
+
+            while (head != null ||  carry > 0)
+            {
+                if (currentResultNode == null)
+                {
+                    resultHead = currentResultNode = new LinkedListNode<int>();
+                }
+                else
+                {
+                    currentResultNode.Next = new LinkedListNode<int>();
+                    currentResultNode = currentResultNode.Next;
+                }
+
+                var currentValue = (head == null ? 0 : head.Value);
+                var tempResult = currentValue * num + carry;
+                currentResultNode.Value = tempResult % 10;
+                carry = tempResult / 10;
+
+                if (head != null)
+                {
+                    head = head.Next;
+                }
+            }
+
+            return resultHead;
+        }
+
+
+        public static LinkedListNode<int> Multiply (LinkedListNode<int> lst_1, LinkedListNode<int> lst_2)
+        {
+            LinkedListNode<int> result = null;
+            int shift = 0;
+
+            while ( lst_2 != null)
+            {
+                var temp = LinkedList<int>.Multiply(lst_1, lst_2.Value, shift);
+                result = LinkedList<int>.Add(result, temp);
+
+                lst_2 = lst_2.Next;
+                shift++;
+            }
+
+            return result;
+        }
+
         #endregion
 
 
