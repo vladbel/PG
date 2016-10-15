@@ -20,6 +20,25 @@ namespace PG.LL
             }
         }
 
+        public static LinkedListNode<T> Reverse(LinkedListNode<T> head)
+        {
+            LinkedListNode<T> previous = null;
+
+            while (head != null)
+            {
+                var nextNode = head.Next;
+                head.Next = previous;
+                if (nextNode == null)
+                {
+                    break;
+                }
+                previous = head;
+                head = nextNode;
+            }
+
+            return head;
+        }
+
 
         #region "Find n-th element from the end"
         public static LinkedListNode<T> FindFromTail(LinkedListNode<T> head, int n)
@@ -83,6 +102,7 @@ namespace PG.LL
 
             return head;
         }
+
         #endregion
 
         #region "Loop in list"
@@ -125,10 +145,51 @@ namespace PG.LL
 
             return null;
         }
+        #endregion
 
-        public static LinkedListNode<int> Merge (LinkedListNode<int> head1, LinkedListNode<int> head2)
+        #region Ariphmetic ops
+        public static LinkedListNode<int> Add(LinkedListNode<int> head1, LinkedListNode<int> head2)
         {
-            LinkedListNode < int > head =null;
+            int carry = 0;
+            LinkedListNode<int> result = null;
+            LinkedListNode<int> resultCurrent = null;
+
+            while (head1 != null || head2 != null || carry > 0)
+            {
+                if (head1 == null && head2 == null && carry == 0)
+                {
+                    break;
+                }
+
+                var val1 = (head1 == null ? 0 : head1.Value);
+                var val2 = (head2 == null ? 0 : head2.Value);
+                var intResult = val1 + val2 + carry;
+
+                var newNode = new LinkedListNode<int>();
+                newNode.Value = intResult % 10;
+                carry = intResult / 10;
+
+                if (result == null)
+                {
+                    result = resultCurrent = newNode;
+                }
+                else
+                {
+                    resultCurrent.Next = newNode;
+                    resultCurrent = newNode;
+                }
+
+                head1 = head1.Next;
+                head2 = head2.Next;
+            }
+            return result;
+        }
+        #endregion
+
+
+        public static LinkedListNode<int> Merge(LinkedListNode<int> head1, LinkedListNode<int> head2)
+        {
+            LinkedListNode<int> head = null;
             LinkedListNode<int> runner = null;
 
             if (head1 == null)
@@ -152,16 +213,16 @@ namespace PG.LL
                 head1 = head1.Next;
             }
 
-            while ( head1 != null || head2 != null)
+            while (head1 != null || head2 != null)
             {
-                while ( head1 != null && head2 != null && head1.Value <= head2.Value)
+                while (head1 != null && head2 != null && head1.Value <= head2.Value)
                 {
                     runner.Next = head1;
                     runner = head1;
                     head1 = head1.Next;
                 }
 
-                while (head1 != null && head2 == null )
+                while (head1 != null && head2 == null)
                 {
                     runner.Next = head1;
                     runner = head1;
@@ -175,7 +236,7 @@ namespace PG.LL
                     head2 = head2.Next;
                 }
 
-                while (head1 == null && head2 != null )
+                while (head1 == null && head2 != null)
                 {
                     runner.Next = head2;
                     runner = head2;
@@ -185,6 +246,5 @@ namespace PG.LL
 
             return head;
         }
-        #endregion
     }
 }
