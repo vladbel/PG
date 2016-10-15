@@ -55,6 +55,7 @@
     <Compile Include="FindFromTailTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FindLoopStartTests.cs" />
+    <Compile Include="MergeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PG.LL\PG.LL.csproj">
