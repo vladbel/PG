@@ -62,6 +62,7 @@
     <Compile Include="RodCutting_DP2_Tests.cs" />
     <Compile Include="LongestSubarrayWhichAddsToGivenSumTests.cs" />
     <Compile Include="RepeatingElementMaxCountTests.cs" />
+    <Compile Include="OrdersTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\PG.DP.csproj">
