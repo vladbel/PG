@@ -20,32 +20,36 @@ namespace PG.Console
         /// </summary>
         static void Ex_2()
         {
-            /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
-            var firstInput = System.Console.ReadLine().Split(' ');
-            var size = int.Parse(firstInput[0]);
-            var modulo = int.Parse(firstInput[1]);
-            var array = System.Console.ReadLine().Split(' ').Select(n => int.Parse(n)).ToArray();
-
-            var result = int.MinValue;
-
-            var subArraySums = new int[size];
-            var subArraySumModulos = new int[size];
-
-            for (var i = 0; i < size; i++)
+            var numberOfQueries = long.Parse(System.Console.ReadLine());
+            for (var nq = 0; nq < numberOfQueries; nq++)
             {
-                for (var j = 0; j <= i; j++)
-                {
-                    subArraySums[j] += array[i];
-                    subArraySumModulos[j] = subArraySums[j] % modulo;
+                var firstInput = System.Console.ReadLine().Split(' ').Select(n => long.Parse(n)).ToArray();
 
-                    if (subArraySumModulos[j] > result)
+
+                var size = (firstInput[0]);
+                var modulo = (firstInput[1]);
+
+                var array = System.Console.ReadLine().Split(' ').Select(n => int.Parse(n)).ToArray();
+
+                var result = long.MinValue;
+
+                var subArraySums = new long[array.Length];
+
+                for (var i = 0; i < array.Length; i++)
+                {
+                    for (var j = 0; j <= i; j++)
                     {
-                        result = subArraySumModulos[j];
+                        subArraySums[j] = (subArraySums[j] + array[i] % modulo) % modulo;
+
+                        if (subArraySums[j] > result)
+                        {
+                            result = subArraySums[j] % modulo;
+                        }
                     }
                 }
-            }
 
-            System.Console.WriteLine(result.ToString());
+                System.Console.WriteLine(result.ToString());
+            }
         }
 
         /// <summary>
