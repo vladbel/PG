@@ -10,7 +10,42 @@ namespace PG.Console
     {
         static void Main(string[] args)
         {
-            Ex_1();
+            Ex_2();
+            System.Console.ReadLine();
+        }
+
+
+        /// <summary>
+        ///  from: https://www.hackerrank.com/challenges/maximum-subarray-sum
+        /// </summary>
+        static void Ex_2()
+        {
+            /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+            var firstInput = System.Console.ReadLine().Split(' ');
+            var size = int.Parse(firstInput[0]);
+            var modulo = int.Parse(firstInput[1]);
+            var array = System.Console.ReadLine().Split(' ').Select(n => int.Parse(n)).ToArray();
+
+            var result = int.MinValue;
+
+            var subArraySums = new int[size];
+            var subArraySumModulos = new int[size];
+
+            for (var i = 0; i < size; i++)
+            {
+                for (var j = 0; j <= i; j++)
+                {
+                    subArraySums[j] += array[i];
+                    subArraySumModulos[j] = subArraySums[j] % modulo;
+
+                    if (subArraySumModulos[j] > result)
+                    {
+                        result = subArraySumModulos[j];
+                    }
+                }
+            }
+
+            System.Console.WriteLine(result.ToString());
         }
 
         /// <summary>
