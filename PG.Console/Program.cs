@@ -10,8 +10,41 @@ namespace PG.Console
     {
         static void Main(string[] args)
         {
-            Ex_2();
+            var m = ReadMatrix();
+            WriteMatrix(m);
             System.Console.ReadLine();
+        }
+
+        static int[,] ReadMatrix()
+        {
+            var rows = Int32.Parse(System.Console.ReadLine());
+            var columns = Int32.Parse(System.Console.ReadLine());
+            var matrix = new int[rows, columns];
+            for (var i = 0; i < rows; i++)
+            {
+                var row = System.Console.ReadLine().Split(' ').Select(e => Int32.Parse(e)).ToArray();
+                for (var j = 0; j < columns; j++)
+                {
+                    matrix[i, j] = row[j];
+                }
+            }
+
+            return matrix;
+        }
+
+        static void WriteMatrix(int[,] matrix)
+        {
+            for (var ri = 0; ri < matrix.GetLength(0); ri++)
+            {
+                var row = "";
+                var delimiter = "";
+                for (var ci = 0; ci < matrix.GetLength(1); ci++)
+                {
+                    row += delimiter + matrix[ri, ci].ToString();
+                    delimiter = " ";
+                }
+                System.Console.WriteLine(row);
+            }
         }
 
 
