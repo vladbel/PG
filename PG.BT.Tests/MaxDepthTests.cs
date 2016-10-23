@@ -53,5 +53,14 @@ namespace PG.BT.Tests
             var depth = Tree.MaxDepth(tree);
             Assert.IsTrue(depth == 2);
         }
+
+        [TestMethod]
+        public void ShallHaveDepthOf_3()
+        {
+            var t = TestTreeFactory.BST_1_8;
+            var d = Tree.MaxDepth(t);
+            Assert.AreEqual(3, d);
+
+        }
     }
 }
