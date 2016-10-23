@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PG.Ex;
 
 namespace PG.Console
 {
@@ -10,8 +11,8 @@ namespace PG.Console
     {
         static void Main(string[] args)
         {
-            var m = ReadMatrix();
-            WriteMatrix(m);
+            var m = MatrixMaxConnectedRegion.ReadMatrix();
+            System.Console.WriteLine(MatrixMaxConnectedRegion.ProcessMatrix(m).ToString());
             System.Console.ReadLine();
         }
 

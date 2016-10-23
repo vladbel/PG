@@ -92,12 +92,13 @@ namespace PG.Ex
                 var c = cur.Item2;
                 m[r, c] = VISITED;
 
-                // look for connected elements 
+                // look for connected elements at 3x3 region (or 2x2 or 3x2 or 2x3 if border case)
                 // mark as discovered
                 // push to stack
-                for ( var rr = Math.Max(0, r - 1); rr < Math.Min (m.GetLength(0), r+1); rr++)
+
+                for ( var rr = Math.Max(0, r - 1); rr < Math.Min (m.GetLength(0), r+2); rr++) // made error here: was r+1 - index and length mixup
                 {
-                    for (var cc = Math.Max(0, c-1); cc < Math.Min(m.GetLength(1), c+1); cc++)
+                    for (var cc = Math.Max(0, c-1); cc < Math.Min(m.GetLength(1), c+2); cc++) // made error here: was c+1
                     {
                         if (m[rr,cc] == IS_REGION)
                         {
