@@ -31,7 +31,7 @@ namespace PG.Ex
             }
             else
             {
-                ni = (oldIndex - a.Length / 2) + 1;
+                ni = (oldIndex * 2 - a.Length) + 1;
             }
             return ni;
         }
