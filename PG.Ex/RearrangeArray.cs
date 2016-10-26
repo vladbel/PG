@@ -10,7 +10,13 @@ namespace PG.Ex
     public class RearrangeArray
     {
         /// <summary>
-        /// rearrange array [0,1,2,3] to [0,2,1,3] - alternate items from bottom half and top half
+        /// 
+        /// rearrange array [2,3,200,300] to [2,102,3,103] - alternate items from bottom half and top half
+        /// 
+        /// Original task:
+        /// Given a Data Structure having first n integers and next n chars. 
+        /// A = i1 i2 i3 … iN c1 c2 c3 … cN.
+        /// Write an in-place algorithm to rearrange the elements of the array ass A = i1 c1 i2 c2 … in cn
         /// /// </summary>
         /// <param name="a"></param>
         public static void ShuffleHalves(int[] a)
@@ -18,6 +24,17 @@ namespace PG.Ex
             if (a.Length % 2 != 0)
             {
                 throw new Exception("Array must have even length");
+            }
+
+            var firstPass = true;
+
+            for (var i = 1; i < a.Length / 2; i += 2) // made few errors about incrementing index
+            {
+                if (firstPass || a[i] < 100)
+                {
+                    firstPass  = false;
+                    Swap(i, a);
+                }
             }
 
         }
