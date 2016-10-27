@@ -8,6 +8,14 @@ namespace PG.BT
 {
     public class Tree
     {
+        public static int Sum ( TreeNode root)
+        {
+            if (root == null)
+                return 0;
+            else
+                return Sum(root.Left) + Sum(root.Right) + root.Value;
+        }
+
         // traverse the tree and find max depth
         public static int MaxDepth (TreeNode root, int depth = 0)
         {

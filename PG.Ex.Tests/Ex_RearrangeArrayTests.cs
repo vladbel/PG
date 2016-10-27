@@ -78,9 +78,6 @@ namespace PG.Ex.Tests
             }
         }
 
-
-
-
         private int[] BuildArray (int size)
         {
             var a = new int[2 * size];

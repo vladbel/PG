@@ -60,6 +60,7 @@
     <Compile Include="TestTreeFactory.cs" />
     <Compile Include="TrverseInOrderTests.cs" />
     <Compile Include="HeapTests.cs" />
+    <Compile Include="BT_SumNodeValues_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PG.BT\PG.BT.csproj">
