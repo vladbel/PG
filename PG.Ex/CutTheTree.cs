@@ -21,10 +21,65 @@ namespace PG.Ex
     /// </summary>
     public class CutTheTree
     {
+        public static void ReadInputFromConsole()
+        {
+            var size = int.Parse(Console.ReadLine());
+            var tree = new Tree();
+
+            var values = Console.ReadLine().Split(' ').Select(v => int.Parse(v)).ToArray();
+
+            for (int i = 1; i <= size; i++)
+            {
+                tree.Nodes.Add(new TreeNode(i, values[i - 1]));
+            }
+
+            for (var i = 1; i < size; i++)
+            {
+                var edge = Console.ReadLine().Split(' ').Select(v => int.Parse(v)).ToArray();
+                tree.AddEdge(edge[0], edge[1]);
+            }
+
+            tree.Traverse(tree.Nodes[0]);
+            var result = tree.FindClosest();
+
+            Console.WriteLine(result.ToString());
+        }
+
+        public static void ReadInputFromConsoleToBuffer()
+        {
+            var size = int.Parse(Console.ReadLine());
+            string[] buffer = new string[size + 1];
+            buffer[0] = size.ToString();
+
+            buffer[1] = Console.ReadLine();
+
+            for (var i = 2; i < buffer.Length; i++)
+            {
+                buffer[i] = Console.ReadLine();
+            }
+
+            var tree = new Tree(buffer);
+
+            tree.Traverse(tree.Nodes[0]);
+            var result = tree.FindClosest();
+
+            Console.WriteLine(result.ToString());
+        }
+
+        public static int Test( string[] buffer)
+        {
+            var tree = new Tree(buffer);
+
+            tree.Traverse(tree.Nodes[0]);
+            var result = tree.FindClosest();
+            return result;
+        }
         class TreeNode
         {
             public int Index { get; set; }
             public int Data { get; set; }
+
+            public int SubtreeSum { get; set; }
 
             public List<TreeNode> Children { get; private set; }
 
@@ -50,12 +105,59 @@ namespace PG.Ex
                 Nodes = new List<TreeNode>();
             }
 
+            public Tree( string[] input): this()
+            {
+                var size = int.Parse(input[0]);
+
+                var values = input[1].Split(' ').Select(v => int.Parse(v)).ToArray();
+
+                for (int i = 1; i <= size; i++)
+                {
+                    Nodes.Add(new TreeNode(i, values[i - 1]));
+                }
+
+                for (var i = 2; i < input.Length; i++)
+                {
+                    var edge = Console.ReadLine().Split(' ').Select(v => int.Parse(v)).ToArray();
+                    this.AddEdge(edge[0], edge[1]);
+                }
+            }
+
             public void AddEdge (int parent, int child)
             {
                 var parentNode = Nodes.Where(n => n.Index == parent)?.FirstOrDefault();
                 var childNode = Nodes.Where(n => n.Index == child)?.FirstOrDefault();
                 parentNode.Children.Add(childNode);
             }
+
+            private Tuple<int, int>[] _subtreeSums;
+
+            public int Traverse( TreeNode head)
+            {
+                if (head == null)
+                {
+                    return 0;
+                }
+
+                var result = head.Data;
+
+                foreach(TreeNode n in head.Children)
+                {
+                    result += Traverse(n);
+                }
+
+                head.SubtreeSum = result;
+
+                return result;
+            }
+
+            public int FindClosest()
+            {
+                var max = Nodes.Where(n => n.Index == 1).FirstOrDefault().Index;
+                var closest = Nodes.Min( n => max - 2 * n.SubtreeSum);
+                return closest;
+            }
+
         }
     }
 }
