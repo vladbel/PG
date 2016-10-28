@@ -118,7 +118,7 @@ namespace PG.Ex
 
                 for (var i = 2; i < input.Length; i++)
                 {
-                    var edge = Console.ReadLine().Split(' ').Select(v => int.Parse(v)).ToArray();
+                    var edge = input[i].Split(' ').Select(v => int.Parse(v)).ToArray();
                     this.AddEdge(edge[0], edge[1]);
                 }
             }
@@ -129,8 +129,6 @@ namespace PG.Ex
                 var childNode = Nodes.Where(n => n.Index == child)?.FirstOrDefault();
                 parentNode.Children.Add(childNode);
             }
-
-            private Tuple<int, int>[] _subtreeSums;
 
             public int Traverse( TreeNode head)
             {
@@ -153,8 +151,8 @@ namespace PG.Ex
 
             public int FindClosest()
             {
-                var max = Nodes.Where(n => n.Index == 1).FirstOrDefault().Index;
-                var closest = Nodes.Min( n => max - 2 * n.SubtreeSum);
+                var max = Nodes.Where(n => n.Index == 1).FirstOrDefault().SubtreeSum;
+                var closest = Nodes.Min( n => Math.Abs(max - 2 * n.SubtreeSum));
                 return closest;
             }
 
