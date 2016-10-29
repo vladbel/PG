@@ -81,6 +81,8 @@ namespace PG.Ex
 
             public int SubtreeSum { get; set; }
 
+            public bool Visited { get; set; }
+
             public List<TreeNode> Children { get; private set; }
 
             public TreeNode GetChild (int index)
@@ -90,6 +92,7 @@ namespace PG.Ex
 
             public TreeNode(int index, int data)
             {
+                Visited = false;
                 Index = index;
                 Data = data;
                 Children = new List<TreeNode>();
@@ -123,11 +126,12 @@ namespace PG.Ex
                 }
             }
 
-            public void AddEdge (int parent, int child)
+            public void AddEdge (int index_1, int index_2)
             {
-                var parentNode = Nodes.Where(n => n.Index == parent)?.FirstOrDefault();
-                var childNode = Nodes.Where(n => n.Index == child)?.FirstOrDefault();
-                parentNode.Children.Add(childNode);
+                var node_1 = Nodes.Where(n => n.Index == index_1)?.FirstOrDefault();
+                var node_2 = Nodes.Where(n => n.Index == index_2)?.FirstOrDefault();
+                node_1.Children.Add(node_2);
+                node_2.Children.Add(node_1);
             }
 
             public int Traverse( TreeNode head)
@@ -136,16 +140,18 @@ namespace PG.Ex
                 {
                     return 0;
                 }
-
+                head.Visited = true;
                 var result = head.Data;
 
                 foreach(TreeNode n in head.Children)
                 {
-                    result += Traverse(n);
+                    if ( !n.Visited)
+                    {
+                        result += Traverse(n);
+                    }
                 }
 
                 head.SubtreeSum = result;
-
                 return result;
             }
 
