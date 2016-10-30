@@ -82,8 +82,11 @@ namespace PG.Ex
             public int SubtreeSum { get; set; }
 
             public bool Visited { get; set; }
+            public bool PassSelfToParent { get; set; }
 
             public List<TreeNode> Children { get; private set; }
+
+            public TreeNode Parent { get; set; }
 
             public TreeNode GetChild (int index)
             {
@@ -93,6 +96,7 @@ namespace PG.Ex
             public TreeNode(int index, int data)
             {
                 Visited = false;
+                PassSelfToParent = true;
                 Index = index;
                 Data = data;
                 Children = new List<TreeNode>();
@@ -134,7 +138,7 @@ namespace PG.Ex
                 node_2.Children.Add(node_1);
             }
 
-            public int Traverse( TreeNode head)
+            public int Traverse_R( TreeNode head)
             {
                 if (head == null)
                 {
@@ -147,12 +151,73 @@ namespace PG.Ex
                 {
                     if ( !n.Visited)
                     {
-                        result += Traverse(n);
+                        result += Traverse_R(n);
                     }
                 }
 
                 head.SubtreeSum = result;
                 return result;
+            }
+
+            public int Traverse (TreeNode head)
+            {
+                var stack = new Stack<TreeNode>();
+                var current = head;
+                current.Visited = true;
+
+                Action<TreeNode> updateParent = (TreeNode node) =>
+                {
+                    if (node == null)
+                    {
+                        return;
+                    }
+                    var subtreeSumIncrement = node.Data;
+                    node.PassSelfToParent = false;
+                    var p = node?.Parent;
+                    while (p != null)
+                    {
+                        p.SubtreeSum += subtreeSumIncrement;
+                        if (p.PassSelfToParent)
+                        {
+                            p.PassSelfToParent = false;
+                            subtreeSumIncrement += p.Data;
+                        }
+                        
+                        p = p?.Parent;
+                    }
+                };
+
+                while (current != null)
+                {
+                    var isLeaf = true;
+                    current.Parent = current.Children.Where(n => n.Visited).FirstOrDefault();
+                    current.SubtreeSum = current.Data;
+
+                    foreach (TreeNode tn in current.Children)
+                    {
+                        if (!tn.Visited)
+                        {
+                            isLeaf = false; // node has children
+                            tn.Visited = true;
+                            tn.SubtreeSum = tn.Data;
+                            stack.Push(tn);
+                        }
+                    }
+                    if (isLeaf)
+                    {
+                        updateParent(current);
+                    }
+                    if (stack.Count > 0)
+                    {
+                        current = stack.Pop();
+                    }
+                    else
+                    {
+                        current = null;
+                    }
+                }
+
+                return head.SubtreeSum;
             }
 
             public int FindClosest()
