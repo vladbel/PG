@@ -52,5 +52,15 @@ namespace PG.Ex.Tests
             var order = _orders.Where(o => o.CustomerId == "c1").FirstOrDefault();
             Assert.AreEqual("c1", order.CustomerId);
         }
+
+        [TestMethod]
+        public void GroupByDepartment()
+        {
+            // select CustomerId of customers who made purchises in departments, which has exactly two orders.
+            var r = _orders.GroupBy(o => o.DepartmentId)
+                .Where( g => g.Count() == 2)
+                .SelectMany( g => g.Select(e=>e.CustomerId)).ToList();
+            
+        }
     }
 }
