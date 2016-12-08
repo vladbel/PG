@@ -57,6 +57,7 @@
     <Compile Include="Ex_RearrangeArrayTests.cs" />
     <Compile Include="Ex_CutTheTreeTests.cs" />
     <Compile Include="LinqTests.cs" />
+    <Compile Include="Ex_FirstRepeatingCharTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PG.Ex\PG.Ex.csproj">

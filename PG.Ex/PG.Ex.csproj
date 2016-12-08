@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CutTheTree.cs" />
+    <Compile Include="FirstRepeatingChar.cs" />
     <Compile Include="LongestPairSequence.cs" />
     <Compile Include="MatrixMaxConnectedRegion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
