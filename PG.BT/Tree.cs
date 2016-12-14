@@ -41,11 +41,23 @@ namespace PG.BT
         {
             return MaxDepth(root) - MinDepth(root) <= 1;
         }
-
-        public static bool IsBinarySearchTree(TreeNode root)
+        
+        public static bool IsBinarySearchTree1(TreeNode root)
         {
-            return root.Left == null ? true : root.Value > MaxValue(root.Left) && IsBinarySearchTree(root.Left)
-                && root.Right == null ? true : root.Value < MinValue(root.Right) && IsBinarySearchTree(root.Right);
+            return root.Left == null ? true : root.Value > MaxValue(root.Left) && IsBinarySearchTree1(root.Left)
+                && root.Right == null ? true : root.Value < MinValue(root.Right) && IsBinarySearchTree1(root.Right);
+        }
+
+        public static bool IsBinarySearchTree(TreeNode root, int floor = int.MinValue, int cieling = int.MaxValue)
+        {
+            if (root == null)
+            {
+                return true;
+            }
+            return (root.Value >= floor 
+                    &&  root.Value <= cieling
+                    && IsBinarySearchTree(root.Left, floor, Math.Min(root.Value, cieling))
+                    && IsBinarySearchTree(root.Right, Math.Max(root.Value, floor), cieling));
         }
 
         public static int MaxValue (TreeNode root)

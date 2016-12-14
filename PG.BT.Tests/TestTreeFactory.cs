@@ -164,5 +164,48 @@ namespace PG.BT.Tests
                 };
             }
         }
+
+        /// <summary>
+        /// Balanced invalid search tree
+        ///                      4
+        ///                   /     \
+        ///                  2       6
+        ///                 / \     / \
+        ///                1   3   0   7
+        /// </summary>
+        static public TreeNode InvalidBST_1_7
+        {
+            get
+            {
+                return new TreeNode()
+                {
+                    Value = 4,
+                    Left = new TreeNode()
+                    {
+                        Value = 2,
+                        Left = new TreeNode()
+                        {
+                            Value = 1
+                        },
+                        Right = new TreeNode()
+                        {
+                            Value = 3
+                        }
+                    },
+                    Right = new TreeNode()
+                    {
+                        Value = 6,
+                        Left = new TreeNode()
+                        {
+                            Value = 0
+                        },
+                        Right = new TreeNode()
+                        {
+                            Value = 7
+                        }
+                    }
+                };
+            }
+        }
     }
 }
