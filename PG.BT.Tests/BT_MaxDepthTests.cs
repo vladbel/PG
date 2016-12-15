@@ -4,62 +4,61 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PG.BT.Tests
 {
     [TestClass]
-    public class MaxDepthTests
+    public class BT_MaxDepthTests
     {
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void ShallThrowNullRefException_WhenTreeRootIsNull()
+        public void ShallReturn_0_WhenTreeRootIsNull()
         {
-            var result = Tree.MaxDepth(null);
+            Assert.AreEqual(0, Tree.MaxDepth(null));
         }
 
         [TestMethod]
-        public void ShallHaveDepthOf_0_WhenLeftAndRightIsNull()
+        public void ShallHaveDepthOf_1_WhenLeftAndRightIsNull()
         {
             var tree = new TreeNode();
             var depth = Tree.MaxDepth(tree);
-            Assert.IsTrue(depth == 0);
+            Assert.AreEqual(1, depth);
         }
 
 
         [TestMethod]
-        public void ShallHaveDepthOf_1_WhenLeftAndRightIsNotNull()
+        public void ShallHaveDepthOf_2_WhenLeftAndRightIsNotNull()
         {
             var tree = new TreeNode() { Left = new TreeNode(), Right = new TreeNode() };
             var depth = Tree.MaxDepth(tree);
-            Assert.IsTrue(depth == 1);
+            Assert.AreEqual(2, depth);
         }
 
         [TestMethod]
-        public void ShallHaveDepthOf_1_WhenLeftIsNull()
+        public void ShallHaveDepthOf_2_WhenLeftIsNull()
         {
             var tree = new TreeNode() {Left = null, Right = new TreeNode() };
             var depth = Tree.MaxDepth(tree);
-            Assert.IsTrue(depth == 1);
+            Assert.AreEqual(2, depth);
         }
 
         [TestMethod]
-        public void ShallHaveDepthOf_1_WhenRightIsNull()
+        public void ShallHaveDepthOf_2_WhenRightIsNull()
         {
             var tree = new TreeNode() { Left = new TreeNode(), Right = null };
             var depth = Tree.MaxDepth(tree);
-            Assert.IsTrue(depth == 1);
-        }
-
-        [TestMethod]
-        public void ShallHaveDepthOf_2()
-        {
-            var tree = new TreeNode() { Left = new TreeNode() { Left = new TreeNode(), Right = null}, Right = null };
-            var depth = Tree.MaxDepth(tree);
-            Assert.IsTrue(depth == 2);
+            Assert.AreEqual(2, depth);
         }
 
         [TestMethod]
         public void ShallHaveDepthOf_3()
         {
+            var tree = new TreeNode() { Left = new TreeNode() { Left = new TreeNode(), Right = null}, Right = null };
+            var depth = Tree.MaxDepth(tree);
+            Assert.AreEqual(3, depth);
+        }
+
+        [TestMethod]
+        public void ShallHaveDepthOf_4()
+        {
             var t = TestTreeFactory.BST_1_8;
             var d = Tree.MaxDepth(t);
-            Assert.AreEqual(3, d);
+            Assert.AreEqual(4, d);
 
         }
     }

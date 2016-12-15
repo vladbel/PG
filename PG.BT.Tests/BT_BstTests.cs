@@ -22,4 +22,3 @@ namespace PG.BT.Tests
         }
     }
 }
-S

@@ -17,14 +17,15 @@ namespace PG.BT
         }
 
         // traverse the tree and find max depth
-        public static int MaxDepth (TreeNode root, int depth = 0)
+        public static int MaxDepth (TreeNode root)
         {
             if (root == null)
             {
-                throw new NullReferenceException("Tree root can't be null");
+                return 0;
             }
-            return Math.Max(root.Left == null ? depth : MaxDepth(root.Left, depth + 1),
-                            root.Right == null ? depth : MaxDepth(root.Right, depth + 1));
+
+            return Math.Max( MaxDepth(root.Left) + 1,
+                             MaxDepth(root.Right) + 1);
         }
 
         public static int MinDepth(TreeNode root, int depth = 0)
