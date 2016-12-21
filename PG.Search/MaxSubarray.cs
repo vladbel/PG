@@ -100,8 +100,5 @@ namespace PG.Search
             return result;
         }
 
-
-
-
     }
 }
