@@ -22,9 +22,33 @@ namespace PG.Search.Tests
         }
 
         [TestMethod]
+        public void Find_abb()
+        {
+            Assert.AreEqual("ab", _find("abb"));
+        }
+
+        [TestMethod]
         public void Find_abca()
         {
             Assert.AreEqual("abc", _find("abca"));
+        }
+
+        [TestMethod]
+        public void Find_abac()
+        {
+            Assert.AreEqual("bac", _find("abac"));
+        }
+
+        [TestMethod]
+        public void Find_ababca()
+        {
+            Assert.AreEqual("abc", _find("ababca"));
+        }
+
+        [TestMethod]
+        public void Find_abacba()
+        {
+            Assert.AreEqual("bac", _find("abacba"));
         }
     }
 }

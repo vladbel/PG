@@ -14,23 +14,34 @@ namespace PG.Search
             var positions = Enumerable.Repeat(-1, 256).ToArray();
 
             var startIndex = 0;
-            var endIndex = 0;
+            var endIndex = -1;
+            var candStart = 0;
 
             for (int i = 0; i < s.Length; i++)
             {
-                if ( positions[s[i]] >= startIndex)
+                var prevDupIndex = positions[s[i]];
+                if (prevDupIndex  >= candStart)
                 {
-
-                    if (i - positions[s[i]] > endIndex - startIndex)
+                    // found duplicate in [....s...d...d
+                    if (i - 1 - candStart > endIndex - startIndex)
                     {
                         //longer substring;
                         endIndex = i - 1;
-                        startIndex = positions[s[i]];
+                        startIndex = candStart;
+                    }
+
+                    candStart = prevDupIndex + 1;
+                }
+                else
+                {
+                    if (i - candStart  > endIndex - startIndex)
+                    {
+                        startIndex = candStart;
+                        endIndex = i;
                     }
                 }
 
                 positions[s[i]] = i;
-
             }
             return s.Substring(startIndex, endIndex - startIndex + 1);
         }
