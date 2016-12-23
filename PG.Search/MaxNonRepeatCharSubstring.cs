@@ -14,7 +14,7 @@ namespace PG.Search
             var positions = Enumerable.Repeat(-1, 256).ToArray();
 
             var startIndex = 0;
-            var endIndex = -1;
+            var endIndex = 0;
             var candStart = 0;
 
             for (int i = 0; i < s.Length; i++)
@@ -22,17 +22,22 @@ namespace PG.Search
                 var prevDupIndex = positions[s[i]];
                 if (prevDupIndex  >= candStart)
                 {
-                    // found duplicate in [....s...d...d
+                    // found duplicate in ....S...D1...D2
+                    // where:
+                    // S  - is start of non-dup substring
+                    // D1 - first occurence of duplicate char
+                    // D2 - second (current) occurence of dup char
+
+                    // check if substring <S1 - D2-1> is max substring
                     if (i - 1 - candStart > endIndex - startIndex)
                     {
-                        //longer substring;
                         endIndex = i - 1;
                         startIndex = candStart;
                     }
 
-                    candStart = prevDupIndex + 1;
+                    candStart = prevDupIndex + 1; // set S to D1 + 1 
                 }
-                else
+                else // current char is non-repeated within substring started from candStart
                 {
                     if (i - candStart  > endIndex - startIndex)
                     {
