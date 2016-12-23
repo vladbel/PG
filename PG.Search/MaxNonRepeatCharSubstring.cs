@@ -24,16 +24,9 @@ namespace PG.Search
                 {
                     // found duplicate in ....S...D1...D2
                     // where:
-                    // S  - is start of non-dup substring
-                    // D1 - first occurence of duplicate char
-                    // D2 - second (current) occurence of dup char
-
-                    // check if substring <S1 - D2-1> is max substring
-                    if (i - 1 - candStart > endIndex - startIndex)
-                    {
-                        endIndex = i - 1;
-                        startIndex = candStart;
-                    }
+                    // S  - is start of non-dup substring - s[candStart]
+                    // D1 - first occurence of duplicate char - s[prevIndex]
+                    // D2 - second (current) occurence of dup char - s[i]
 
                     candStart = prevDupIndex + 1; // set S to D1 + 1 
                 }

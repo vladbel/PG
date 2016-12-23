@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PG.Search.Tests
 {
     [TestClass]
-    public class Search_FindMNRC_1 : Search_FindMaxNonRepeatCharSubstringBase
+    public class Search_FindMaxNonRepeatCharSubstringTests_1 : Search_FindMaxNonRepeatCharSubstringBase
     {
 
         [TestInitialize]

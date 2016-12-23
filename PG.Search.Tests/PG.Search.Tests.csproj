@@ -59,7 +59,7 @@
     <Compile Include="MaxCrossSubarrayTests.cs" />
     <Compile Include="Search_FindMaxNonRepeatCharRightSubstringTests.cs" />
     <Compile Include="Search_FindMaxNonRepeatCharSubstringBase.cs" />
-    <Compile Include="Search_FindMNRC_1.cs" />
+    <Compile Include="Search_FindMaxNonRepeatCharSubstringTests_1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PG.Search\PG.Search.csproj">

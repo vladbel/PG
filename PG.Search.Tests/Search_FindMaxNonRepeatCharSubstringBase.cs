@@ -50,5 +50,42 @@ namespace PG.Search.Tests
         {
             Assert.AreEqual("bac", _find("abacba"));
         }
+
+        [TestMethod]
+        public void Find_abcabcdabc()
+        {
+            Assert.AreEqual("abcd", _find("abcabcdabc"));
+        }
+
+        [TestMethod]
+        public void Find_abcabcd()
+        {
+            Assert.AreEqual("abcd", _find("abcabcd"));
+        }
+
+        [TestMethod]
+        public void Find_abcdabce()
+        {
+            Assert.AreEqual("dabce", _find("abcdabce"));
+        }
+
+        [TestMethod]
+        public void Find_abOcdeOfgh()
+        {
+            Assert.AreEqual("cdeOfgh", _find("abOcdeOfgh"));
+        }
+
+        [TestMethod]
+        public void Find_ab_cd_efghikl_mnop_rstq()
+        {
+            Assert.AreEqual("efghikl_mnop", _find("ab_cd_efghikl_mnop_rstq"));
+        }
+
+        [TestMethod]
+        public void Find_ab_cd_efghiklmnop__rstq()
+        {
+            Assert.AreEqual("cd_efghiklmnop", _find("ab_cd_efghiklmnop__rstq"));
+        }
+
     }
 }
