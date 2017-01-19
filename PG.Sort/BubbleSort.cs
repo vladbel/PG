@@ -12,9 +12,12 @@ namespace PG.Sort
         {
             var start = 0;
             var end = array.Length - 1;
+            var sorted = false;
 
-            while (start < end)
+            while (start < end && !sorted)
             {
+                sorted = true;
+
                 for (var i = start; i < end; i++)
                 {
                     if (array[i] > array[i+1])
@@ -23,9 +26,18 @@ namespace PG.Sort
                         array[i+1] += array[i];
                         array[i] = array[i + 1] - array[i];
                         array[i + 1] -= array[i];
+
+                        // assume array is not sorted
+                        sorted = false;
                     }
                 }
+                if (sorted)
+                {
+                    break;
+                }
                 end--;
+
+                sorted = true;
 
                 for (var i = end; i > start; i--)
                 {
@@ -35,8 +47,12 @@ namespace PG.Sort
                         array[i - 1] += array[i];
                         array[i] = array[i - 1] - array[i];
                         array[i - 1] -= array[i];
+
+                        // assume array is not sorted
+                        sorted = false;
                     }
                 }
+
                 start ++;
             }
         }
