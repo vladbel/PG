@@ -62,5 +62,46 @@ namespace PG.Ex.Tests
                 .SelectMany( g => g.Select(e=>e.CustomerId)).ToList();
             
         }
+
+        [TestMethod]
+        public void SelectDistinct()
+        {
+            var array = new string[] { "1", "1"};
+
+            var result = array.GroupBy(id => id).Select(gr => gr.First()).ToArray();
+            Assert.AreEqual(1, result.Length);
+            Assert.AreEqual("1", result[0]);
+        }
+
+        [TestMethod]
+        public void SelectDistinct2()
+        {
+            var array = new string[] { "1", "1", "1" };
+
+            var result = array.GroupBy(id => id).Select(gr => gr.First()).ToArray();
+            Assert.AreEqual(1, result.Length);
+            Assert.AreEqual("1", result[0]);
+        }
+
+        [TestMethod]
+        public void SelectDistinct3()
+        {
+            var array = new string[] {};
+
+            var result = array.GroupBy(id => id).Select(gr => gr.First()).ToArray();
+            Assert.AreEqual(0, result.Length);
+
+        }
+
+        [TestMethod]
+        public void SelectDistinct4()
+        {
+            var array = new string[] { "1", "1", "1", "2", "2" };
+
+            var result = array.GroupBy(id => id).Select(gr => gr.First()).ToArray();
+            Assert.AreEqual(2, result.Length);
+            Assert.AreEqual("1", result[0]);
+            Assert.AreEqual("2", result[1]);
+        }
     }
 }
